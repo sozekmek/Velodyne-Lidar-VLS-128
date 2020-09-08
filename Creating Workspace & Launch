@@ -1,0 +1,18 @@
+# Installing dependencies of Velodyne
+sudo apt-get install ros-VERSION-velodyne
+
+# Installing the VLP16 Driver
+cd ~/catkin_ws/src/ && git clone https://github.com/velodynevls/velodyne_vls.git
+rosdep install --from-paths src --ignore-src --rosdistro YOURDISTRO -y
+cd ~/catkin_ws/ && catkin_make
+
+# Visualising data
+roslaunch velodyne_pointcloud VLS128_points.launch
+roslaunch velodyne_pointcloud VLS128_points_pcap_1200.launch
+roslaunch velodyne_pointcloud VLS128_points_pcap_600.launch
+roslaunch velodyne_pointcloud VLS128_points_pcap_300.launch
+rosrun rviz rviz -f velodyne
+
+# Miscellaneous
+rosnode list
+rostopic echo /velodyne_points
